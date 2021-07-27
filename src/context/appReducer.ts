@@ -1,11 +1,13 @@
 const ApplicationReducer = (state: any, action: any) => {
-  let newState: any
+  console.log(state)
+  console.log(action)
+
   switch (action.type) {
+    case 'ToggleLoading':
+      return { ...state, loading: true }
     default:
-      newState = state
-      break
+      return state
   }
-  return newState
 }
 
 export default ApplicationReducer

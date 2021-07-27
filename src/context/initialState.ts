@@ -1,8 +1,8 @@
 import { IUserInfo } from '@/types/user'
 
-
 export interface IState {
   userInfo: IUserInfo
+  loading: boolean
 }
 
 const initialState = (): IState => {
@@ -11,6 +11,7 @@ const initialState = (): IState => {
       nickname: 'Ares',
       avatar: 'http://vipres.top/imgs/avatar.jpg',
     },
+    loading: false,
   }
 }
 

@@ -2,19 +2,17 @@ import React, { createContext, FC, useContext, useReducer } from 'react'
 import ApplicationReducer from './appReducer'
 import initialState, { IState } from './initialState'
 
-const AppContext = createContext([{} as IState, () => null])
+const AppContext = createContext([{} as IState])
 
 interface Props {}
 
-export const AppProvider: FC<Props> = ({children,...others}) => {
-  const [appState, dispath] = useReducer(
-    ApplicationReducer,
-    initialState()
+export const AppProvider: FC<Props> = ({ children }) => {
+  const [appState, dispatch] = useReducer(ApplicationReducer, initialState())
+  return (
+    <AppContext.Provider value={[appState, dispatch]}>
+      {children}
+    </AppContext.Provider>
   )
-  const mergeState = {...appState, ...others}
-  return <AppContext.Provider value={[mergeState, dispath]}>
-    { children }
-  </AppContext.Provider>
 }
 
 export const useApplicationState = () => useContext(AppContext)
