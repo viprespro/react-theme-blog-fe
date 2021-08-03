@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AppContext from '@/context/appContext'
 
+import style from './index.module.less'
 export default class Home extends Component {
   componentDidMount() {
     const [{ userInfo }, dispatch] = this.context
@@ -15,9 +16,9 @@ export default class Home extends Component {
 
   render() {
     return (
-      <>
-        <h1>This is index home page.</h1>
-      </>
+      <div className={style.container}>
+        <h1>123</h1>
+      </div>
     )
   }
 }
