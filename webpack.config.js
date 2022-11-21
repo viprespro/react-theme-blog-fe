@@ -1,12 +1,7 @@
 const { resolve } = require('path')
-const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const isProd =
-  process.argv.indexOf('production') > 0 ||
-  process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production'
 
 const loaders = [
   isProd ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -60,31 +55,19 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.ts(x?)$/,
-        use: ['awesome-typescript-loader'],
-      },
-      {
-        exclude: /\.(html|js|ts|jsx|tsx|css|less|jpg|png|gif|jpeg|)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[hash:10].[ext]',
-        },
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
       },
     ],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin(),
     new HtmlPlugin({
       template: 'public/index.html',
       minify: {
         collapseWhitespace: true,
         removeComments: true,
       },
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
     }),
   ],
   performance: {

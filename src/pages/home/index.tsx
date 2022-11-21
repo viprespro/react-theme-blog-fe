@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
 
+import styles from './index.module.less'
+
 export default class Home extends Component {
-
-  componentDidMount() {
-
-  }
-
   render() {
-    return (
-      <>
-        <h1>This is index home page.</h1>
-      </>
-    )
+    return <div className={styles.home}>This is home index.</div>
   }
 }
